@@ -1,6 +1,6 @@
 /*建立會員功能相端的資料庫模型，並與mongodb連線 */
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/ex6',{useNewUrlParser: true});
+mongoose.connect('mongodb://localhost/ex6-3',{useNewUrlParser: true});
 
 var memberSchema = new mongoose.Schema({
     name: String,

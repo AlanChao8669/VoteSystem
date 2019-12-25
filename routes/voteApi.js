@@ -4,9 +4,10 @@ var router = express.Router();
 //投票功能相關api
 var voteModel = require('../models/voteModel.js');
 //投票功能
-router.post('/addvote', function(req, res){
+router.post('/addVote', function(req, res){
     //將投票選項陣列中的內容抓下來
     var optionAry = [];
+    console.log("a"+req.body.optionAry);
     for(var i=0; i < req.body.optionAry.length; i++){
         var option = {name: req.body.optionAry[i], account: []};
         optionAry.push(option);
@@ -17,7 +18,12 @@ router.post('/addvote', function(req, res){
         name: req.body.name,
         title: req.body.title,
         option: optionAry,
-        postdate: new Date();
+        postdate: new Date()
+    });
+    //save into db
+    newvote.save(function(err){
+        if(err) res.json({"status": 1, "msg": "error"});
+        res.json({"status": 0, "msg": "success", "data": newvote});
     });
 });
 

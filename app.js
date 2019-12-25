@@ -7,6 +7,7 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var memberRouter = require('./routes/memberApi'); //新增會員功能router程式
+var voteRouter = require('./routes/voteApi'); //投票功能router程式
 
 var app = express();
 
@@ -16,13 +17,14 @@ app.set('view engine', 'jade');
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/member', memberRouter); //將memberrouter加入路由
+app.use('/vote', voteRouter); //vote router加入路由
 app.use('/public',express.static('public'));  //將指定目錄public(及其目錄下檔案)對外開放
 
 // catch 404 and forward to error handler
