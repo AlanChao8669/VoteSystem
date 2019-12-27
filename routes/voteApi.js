@@ -37,7 +37,7 @@ router.get('/getVote', function(req, res){
         "title" : {$regex: '.*' + title + '.*'} 
     }, function(err, data){
         if(err) res.json({"status": 1, "msg": "error"})
-        console.log(data);
+        // console.log(data);
         res.json(data);
     });
 
