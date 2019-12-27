@@ -31,7 +31,6 @@ function addVote(){
         alert("請至少加入兩個投票選項");
         return;
     }
-    console.log("ary:"+optionAry);
     //建資料
     var postdata = {
         title: $('#title').val(),
@@ -39,10 +38,8 @@ function addVote(){
         account: $.cookie('userID'),
         name: $.cookie('userName')
     }
-    console.log(postdata);
     //post資料
     $.post("/vote/addVote", postdata, function(res){
-        console.log("b"+res);
         if(res.status == 0){
             alert("建立成功");
             location.href = '/public/vote.html';
